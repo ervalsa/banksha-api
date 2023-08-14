@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('data_plans', function (Blueprint $table) {
+        Schema::create('data_plan_histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('operator_card_id')->constrained('operator_cards');
-            $table->string('name');
-            $table->float('price');
+            $table->foreignId('data_plan_id')->constrained('data_plans');
+            $table->foreignId('transaction_id')->constrained('transactions');
+            $table->string('phone_number');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('data_plans');
+        Schema::dropIfExists('data_plan_histories');
     }
 };
